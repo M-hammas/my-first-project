@@ -1,0 +1,85 @@
+/* Reset */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* Background */
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+}
+
+/* Calculator Box */
+.calculator{
+    width:350px;
+    background:#111827;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.5);
+}
+
+/* Display */
+#display{
+    width:100%;
+    height:70px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    margin-bottom:20px;
+    background:#1f2937;
+    color:#fff;
+    font-size:30px;
+    text-align:right;
+    padding:15px;
+}
+
+/* Buttons Grid */
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+/* All Buttons */
+button{
+    height:65px;
+    border:none;
+    border-radius:12px;
+    font-size:22px;
+    cursor:pointer;
+    background:#374151;
+    color:white;
+    transition:.3s;
+}
+
+/* Hover Effect */
+button:hover{
+    transform:scale(1.05);
+    background:#4b5563;
+}
+
+/* Operators */
+.operator{
+    background:#2563eb;
+}
+
+/* Equal Button */
+.equal{
+    background:#22c55e;
+}
+
+/* Operator Hover */
+.operator:hover{
+    background:#3b82f6;
+}
+
+/* Equal Hover */
+.equal:hover{
+    background:#16a34a;
+}
