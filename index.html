@@ -87,17 +87,19 @@ section{
   transform:translateY(-10px);
 }
 .card img{
-    width:60%;
+    width:100%;
     height:auto;
-    max-height:150px;
+    max-height:220px;
     object-fit:contain;
     display:block;
     margin:0 auto 15px;
-    border-radius:12px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+    transition:0.3s ease;
 }
 
 .card:hover img{
-  transform:none;
+    transform:scale(1.03);
 }
 
 /* SKILLS */
