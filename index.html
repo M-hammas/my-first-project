@@ -368,10 +368,7 @@ section{
   </a>
 
 </div>
-</div>
 </section>
-</section>
-
 <!-- CONTACT -->
 <section id="contact" class="contact fade">
   <h2>Contact Me</h2>
@@ -416,14 +413,17 @@ type();
 /* SCROLL ANIMATION */
 const elements = document.querySelectorAll('.fade');
 
-window.addEventListener('scroll', () => {
-  elements.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100){
-      el.classList.add('show');
-    }
-  });
-});
+function revealSections(){
+    elements.forEach(el=>{
+        const top = el.getBoundingClientRect().top;
+        if(top < window.innerHeight - 100){
+            el.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealSections);
+revealSections();
 
 </script>
 
