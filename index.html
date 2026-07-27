@@ -424,6 +424,26 @@ function revealSections(){
 
 window.addEventListener('scroll', revealSections);
 revealSections();
+  const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.style.color = "white";
+        if (link.getAttribute("href") === "#" + current) {
+            link.style.color = "#38bdf8";
+        }
+    });
+});
 
 </script>
 
