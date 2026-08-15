@@ -1,482 +1,397 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hammas Ali | Premium Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<meta name="description" content="Hammas Ali — Software Engineering student and Full-Stack Developer portfolio featuring web development, JavaScript, React, AI automation and modern software projects.">
+<meta name="theme-color" content="#020617">
+<title>Hammas Ali | Software Engineer & Full-Stack Developer</title>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{
-  background: linear-gradient(135deg,#020617,#0f172a);
-  color:white;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(56,189,248,.12),transparent 28%),
+    radial-gradient(circle at 85% 30%,rgba(14,165,233,.09),transparent 25%),
+    linear-gradient(135deg,#020617,#0f172a 55%,#020617);
+  color:#fff;min-height:100vh;overflow-x:hidden;
 }
-  html{
-    scroll-behavior:smooth;
-    scroll-padding-top:90px;
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(rgba(56,189,248,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.025) 1px,transparent 1px);
+  background-size:45px 45px;mask-image:linear-gradient(to bottom,#000,transparent 90%);
 }
-
-/* NAV */
+a{color:inherit}
 nav{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 10%;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  position:sticky;
-  top:0;
+  display:flex;justify-content:space-between;align-items:center;padding:16px 8%;
+  background:rgba(2,6,23,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,.08);
 }
-
-nav h2{color:#38bdf8;}
-
-nav a{
-  color:white;
-  margin-left:20px;
-  text-decoration:none;
-}
-
-/* HERO */
-.hero{
-  text-align:center;
-  padding:120px 20px;
-}
-
-.hero h1{
-  font-size:45px;
-}
-
-.typing{
-  color:#38bdf8;
-  font-weight:bold;
-}
-
-/* BUTTON */
+nav h2{color:#38bdf8;letter-spacing:.5px}
+nav div{display:flex;align-items:center;gap:7px}
+nav a{color:#cbd5e1;margin-left:10px;text-decoration:none;padding:9px 11px;border-radius:10px;transition:.25s}
+nav a:hover,nav a.active{color:#38bdf8;background:rgba(56,189,248,.08)}
+section{padding:85px 10%;position:relative}
+.hero{text-align:center;min-height:86vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:100px}
+.hero h1{font-size:clamp(38px,6vw,72px);line-height:1.05;letter-spacing:-2px}
+.hero h1 span{color:#38bdf8;text-shadow:0 0 35px rgba(56,189,248,.25)}
+.hero h2{font-size:clamp(20px,3vw,32px);margin:20px 0 12px}
+.typing{color:#38bdf8;font-weight:800;min-height:1.3em}
+.hero-sub{max-width:760px;color:#94a3b8;line-height:1.8;font-size:17px}
+.hero-badge{padding:8px 14px;border:1px solid rgba(56,189,248,.3);border-radius:999px;background:rgba(56,189,248,.07);color:#7dd3fc;margin-bottom:24px;font-size:13px;letter-spacing:.7px}
 .btn{
-  display:inline-block;
-  margin:10px;
-  padding:12px 25px;
-  background:#38bdf8;
-  color:black;
-  border-radius:25px;
-  text-decoration:none;
-  transition:0.3s;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;margin:10px;padding:13px 23px;
+  background:linear-gradient(135deg,#38bdf8,#0ea5e9);color:#00111b;border-radius:13px;text-decoration:none;
+  font-weight:800;border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 30px rgba(14,165,233,.18);transition:.3s;
 }
-
-.btn:hover{
-  background:white;
-}
-
-/* SECTION */
-section{
-  padding:60px 10%;
-}
-
-/* GLASS CARD */
+.btn:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(14,165,233,.28);background:#fff}
+.btn.secondary{background:rgba(255,255,255,.05);color:#e2e8f0;border:1px solid rgba(255,255,255,.12)}
+.btn.secondary:hover{background:rgba(56,189,248,.1);color:#7dd3fc}
+.social-icons{margin-top:22px;display:flex;justify-content:center;gap:13px}
+.social-icons a{width:46px;height:46px;border-radius:14px;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);color:#7dd3fc;display:flex;align-items:center;justify-content:center;font-size:20px;text-decoration:none;transition:.3s}
+.social-icons a:hover{background:#38bdf8;color:#00111b;transform:translateY(-5px) rotate(2deg)}
+.section-title{font-size:clamp(28px,4vw,42px);margin-bottom:12px}
+.section-sub{color:#94a3b8;max-width:720px;line-height:1.7;margin-bottom:28px}
 .card{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  padding:20px;
-  border-radius:12px;
-  margin-top:20px;
-  transition:0.3s;
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding:25px;border-radius:20px;margin-top:20px;transition:.35s;box-shadow:0 20px 60px rgba(0,0,0,.16);
 }
-
-.card:hover{
-  transform:translateY(-10px);
+.card:hover{transform:translateY(-8px);border-color:rgba(56,189,248,.32);box-shadow:0 25px 70px rgba(0,0,0,.3),0 0 35px rgba(56,189,248,.06)}
+.card img{width:100%;height:auto;max-height:250px;object-fit:contain;display:block;margin:0 auto 17px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.32);transition:.4s}
+.card:hover img{transform:scale(1.025)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.grid .card{margin-top:0}
+.skill{margin-top:19px}
+.skill-head{display:flex;justify-content:space-between;color:#cbd5e1;margin-bottom:7px;font-size:14px}
+.bar{background:#172033;height:9px;border-radius:20px;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,#0ea5e9,#67e8f9);border-radius:20px;box-shadow:0 0 15px rgba(56,189,248,.3);animation:loadbar 1.5s ease both}
+@keyframes loadbar{from{width:0}}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}
+.tag{padding:7px 10px;border-radius:999px;background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.15);color:#bae6fd;font-size:12px}
+.project-meta{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.project-meta span{font-size:12px;color:#7dd3fc}
+.project-links{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.project-links .btn{margin:5px 5px 0 0}
+.resume-card{
+  display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:center;
+  background:linear-gradient(135deg,rgba(14,165,233,.12),rgba(255,255,255,.035));
 }
-.card img{
-    width:100%;
-    height:auto;
-    max-height:220px;
-    object-fit:contain;
-    display:block;
-    margin:0 auto 15px;
-    border-radius:15px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.3);
-    transition:0.3s ease;
+.resume-preview{
+  border:1px solid rgba(56,189,248,.2);border-radius:18px;padding:22px;background:#07101e;
+  box-shadow:inset 0 0 45px rgba(56,189,248,.04),0 20px 55px rgba(0,0,0,.2)
 }
-
-.card:hover img{
-    transform:scale(1.03);
+.resume-preview h3{color:#7dd3fc;margin-bottom:8px}
+.resume-preview p{color:#94a3b8;line-height:1.65;font-size:14px}
+.resume-points{display:grid;gap:12px;margin-top:18px}
+.resume-point{display:flex;gap:12px;align-items:flex-start;color:#cbd5e1;font-size:14px}
+.resume-point i{color:#38bdf8;margin-top:3px}
+.timeline{display:grid;gap:16px}
+.timeline-item{padding:18px;border-left:2px solid #38bdf8;background:rgba(255,255,255,.035);border-radius:0 14px 14px 0}
+.timeline-item strong{color:#7dd3fc}
+.timeline-item p{color:#94a3b8;line-height:1.65;margin-top:5px}
+.contact a{color:#38bdf8;text-decoration:none}
+.contact-card{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-box{padding:22px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);border-radius:18px}
+.contact-box i{color:#38bdf8;font-size:22px;margin-bottom:10px}
+footer{text-align:center;padding:35px 20px;color:#64748b;border-top:1px solid rgba(255,255,255,.07)}
+.fade{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}
+.show{opacity:1;transform:translateY(0)}
+.cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(56,189,248,.08),transparent 65%);transform:translate(-50%,-50%);z-index:-1}
+#scrollTop{position:fixed;right:22px;bottom:22px;width:45px;height:45px;border:1px solid rgba(56,189,248,.25);background:rgba(2,6,23,.75);color:#38bdf8;border-radius:14px;display:none;cursor:pointer;z-index:999;backdrop-filter:blur(10px)}
+#scrollTop.show-top{display:block;animation:pop .25s ease}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+@media(max-width:768px){
+  nav{padding:13px 14px;gap:10px}
+  nav h2{font-size:20px}
+  nav div{width:100%;overflow-x:auto;justify-content:flex-start;padding-bottom:2px;scrollbar-width:none}
+  nav a{font-size:12px;margin-left:0;padding:8px 9px;white-space:nowrap}
+  .hero{padding:75px 18px;min-height:78vh}
+  .hero h1{letter-spacing:-1px}
+  .hero-sub{font-size:15px}
+  section{padding:60px 18px}
+  .grid,.resume-card,.contact-card{grid-template-columns:1fr}
+  .card{padding:19px;border-radius:17px}
+  .card img{max-height:190px}
+  .btn{width:100%;margin:7px 0}
+  .social-icons a{width:48px;height:48px}
 }
-
-/* SKILLS */
-.skill{
-  margin-top:15px;
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
-
-.bar{
-  background:#1e293b;
-  height:8px;
-  border-radius:10px;
-  overflow:hidden;
-}
-
-.fill{
-  height:100%;
-  background:#38bdf8;
-}
-
-/* CONTACT FIX */
-.contact a{
-  color:#38bdf8;
-  text-decoration:none !important;
-}
-
-/* ANIMATION */
-.fade{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
-}
-
-.show{
-  opacity:1;
-  transform:translateY(0);
-}
-  .social-icons{
-    margin-top:25px;
-    display:flex;
-    justify-content:center;
-    gap:20px;
-}
-
-.social-icons a{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:#38bdf8;
-    color:#000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    text-decoration:none;
-    transition:0.3s;
-}
-
-.social-icons a:hover{
-    background:#fff;
-    transform:translateY(-5px);
-}
-  /* ======================================
-MOBILE RESPONSIVE
-====================================== */
-
-@media (max-width:768px){
-
-nav{
-    flex-direction:column;
-    align-items:center;
-    gap:15px;
-    padding:20px;
-}
-
-nav div{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:15px;
-}
-
-.hero{
-    padding:80px 20px;
-}
-
-.hero h1{
-    font-size:32px;
-}
-
-.hero h2{
-    font-size:22px;
-}
-
-section{
-    padding:40px 20px;
-}
-
-.card{
-    width:100%;
-}
-
-.card img{
-    max-height:180px;
-}
-
-.btn{
-    display:block;
-    width:100%;
-    margin:10px 0;
-    text-align:center;
-}
-
-.social-icons{
-    justify-content:center;
-    flex-wrap:wrap;
-}
-
-}
-
 </style>
 </head>
 
 <body>
+<div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- NAV -->
 <nav>
-  <h2>Hammas</h2>
+  <h2>Hammas<span style="color:#fff">.</span></h2>
   <div>
-    <a href="#home">Home</a>
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#resume">Resume</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero fade" id="home">
+  <div class="hero-badge"><i class="fa-solid fa-code"></i> SOFTWARE ENGINEERING • FULL-STACK DEVELOPMENT</div>
   <h1>Hi, I'm <span>Hammas Ali</span></h1>
   <h2 class="typing"></h2>
+  <p class="hero-sub">
+    Software Engineering student building modern, responsive and interactive web applications
+    with a focus on clean UI, practical functionality and continuous improvement.
+  </p>
 
-  <a href="https://wa.me/923164968368" class="btn">Hire Me</a>
-  <a href="Muhammad-Hammas-CV.pdf.pdf" download class="btn">
-    📄 Download CV
-</a>
-<div class="social-icons">
+  <div style="margin-top:22px">
+    <a href="https://wa.me/923164968368" class="btn"><i class="fa-brands fa-whatsapp"></i> Hire Me</a>
+    <a href="Muhammad-Hammas-CV.pdf.pdf" download class="btn secondary"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+    <a href="#resume" class="btn secondary"><i class="fa-solid fa-file-lines"></i> View Resume</a>
+  </div>
 
-<a href="https://github.com/M-hammas" target="_blank" title="GitHub">
-    <i class="fa-brands fa-github"></i>
-</a>
-
-<a href="https://www.linkedin.com/in/hammaswebdev" target="_blank" title="LinkedIn">
-    <i class="fa-brands fa-linkedin"></i>
-</a>
-
-</div>
+  <div class="social-icons">
+    <a href="https://github.com/M-hammas" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/hammaswebdev" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+  </div>
 </section>
 
-<!-- SKILLS -->
-  <!-- ABOUT -->
 <section id="about" class="fade">
-
-  <h2>About Me</h2>
-
+  <h2 class="section-title">About Me</h2>
+  <p class="section-sub">A growing software engineer focused on turning ideas into polished, usable digital products.</p>
   <div class="card">
-
-    <p>
-      I'm M hammas, a Frontend Web Developer passionate about building modern, responsive, and user-friendly web applications using HTML, CSS, and JavaScript. I enjoy creating premium UI designs and interactive projects.
+    <p style="color:#cbd5e1;line-height:1.85">
+      I'm Hammas, a Software Engineering student and Full-Stack Developer focused on building
+      modern, responsive and user-friendly web applications. I work with HTML, CSS, JavaScript,
+      React and practical backend technologies, while continuously improving my development skills
+      through real projects.
     </p>
-
+    <div class="tags">
+      <span class="tag">Software Engineering</span><span class="tag">Full-Stack Development</span>
+      <span class="tag">Responsive UI</span><span class="tag">JavaScript</span><span class="tag">React</span>
+      <span class="tag">GitHub</span>
+    </div>
   </div>
-
 </section>
+
 <section id="skills" class="fade">
-  <h2>My Skills</h2>
-
-  <div class="skill">
-    <p>HTML</p>
-    <div class="bar"><div class="fill" style="width:95%"></div></div>
+  <h2 class="section-title">Technical Skills</h2>
+  <p class="section-sub">Core technologies and development areas represented by my current projects.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="skill"><div class="skill-head"><span>HTML5</span><b>95%</b></div><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+      <div class="skill"><div class="skill-head"><span>CSS3 / Responsive UI</span><b>90%</b></div><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+      <div class="skill"><div class="skill-head"><span>JavaScript</span><b>80%</b></div><div class="bar"><div class="fill" style="width:80%"></div></div></div>
+      <div class="skill"><div class="skill-head"><span>React</span><b>75%</b></div><div class="bar"><div class="fill" style="width:75%"></div></div></div>
+    </div>
+    <div class="card">
+      <h3 style="color:#7dd3fc;margin-bottom:12px">Development Focus</h3>
+      <div class="tags">
+        <span class="tag">Frontend Development</span><span class="tag">Full-Stack Development</span>
+        <span class="tag">UI/UX</span><span class="tag">REST/API Integration</span>
+        <span class="tag">Local Storage</span><span class="tag">Firebase</span>
+        <span class="tag">Vite</span><span class="tag">Git & GitHub</span>
+        <span class="tag">Mobile Responsive Design</span>
+      </div>
+    </div>
   </div>
-
-  <div class="skill">
-    <p>CSS</p>
-    <div class="bar"><div class="fill" style="width:90%"></div></div>
-  </div>
-
-  <div class="skill">
-    <p>JavaScript</p>
-    <div class="bar"><div class="fill" style="width:80%"></div></div>
-  </div>
-
 </section>
 
-
-<!-- PROJECTS -->
 <section id="projects" class="fade">
-  <h2>Projects</h2>
+  <h2 class="section-title">Featured Projects</h2>
+  <p class="section-sub">A selection of practical projects demonstrating frontend, full-stack and application development skills.</p>
 
-  <div class="card">
-<img src="calculator.png.png" alt="Calculator">
-    <h3>🧮 Calculator</h3>
-    <p>A responsive calculator built using HTML, CSS and JavaScript.</p>
-    <br>
-    <a href="https://m-hammas.github.io/calculator/" target="_blank" class="btn">
-      View Project
-    </a>
+  <div class="grid">
+    <div class="card">
+      <img src="calculator.png.png" alt="Calculator project">
+      <h3>🧮 Calculator</h3>
+      <p style="color:#94a3b8;line-height:1.65;margin-top:8px">A responsive calculator built using HTML, CSS and JavaScript.</p>
+      <a href="https://m-hammas.github.io/calculator/" target="_blank" rel="noopener" class="btn">View Project</a>
+    </div>
+
+    <div class="card">
+      <h3>💼 Premium Portfolio</h3>
+      <p style="color:#94a3b8;line-height:1.65;margin-top:8px">Modern animated personal portfolio with smooth scrolling, typing effects, responsive layout and interactive UI.</p>
+      <div class="project-meta"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+    </div>
+
+    <div class="card">
+      <h3>🛒 Ultra Commerce — Professional E-Commerce</h3>
+      <p style="color:#94a3b8;line-height:1.65;margin-top:8px">
+        A modern e-commerce web application built with React, Vite, Firebase and responsive CSS.
+        Includes product browsing, search, filters, wishlist, cart, quick view, orders and authentication.
+      </p>
+      <div class="project-meta"><span>React</span><span>Vite</span><span>Firebase</span></div>
+      <div class="project-links">
+        <a href="https://m-hammas.github.io/ultra-commerce-ai/" target="_blank" rel="noopener" class="btn">🚀 Live Project</a>
+        <a href="https://github.com/M-hammas/ultra-commerce-ai" target="_blank" rel="noopener" class="btn secondary">💻 GitHub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="weather.png.png" alt="Weather Dashboard">
+      <h3>🌦️ Weather Dashboard</h3>
+      <p style="color:#94a3b8;line-height:1.65;margin-top:8px">Responsive weather application showing real-time weather information for any city.</p>
+      <a href="https://m-hammas.github.io/Weather-Dashboard-Pro/" target="_blank" rel="noopener" class="btn">View Project</a>
+    </div>
+
+    <div class="card">
+      <img src="todo.png.png" alt="To-Do List">
+      <h3>📝 To-Do List</h3>
+      <p style="color:#94a3b8;line-height:1.65;margin-top:8px">Task management application with add, complete, delete and localStorage persistence.</p>
+      <a href="https://m-hammas.github.io/To-Do-List/" target="_blank" rel="noopener" class="btn">View Project</a>
+    </div>
+
+    <div class="card">
+      <img src="tictactoe.png.png" alt="Ultimate Tic Tac Toe">
+      <h3>🎮 Ultimate Tic Tac Toe</h3>
+      <p style="color:#94a3b8;line-height:1.65;margin-top:8px">Premium game with AI difficulty levels, score tracking, match history, sound, local storage and responsive design.</p>
+      <a href="https://m-hammas.github.io/Tic-toc-game/" target="_blank" rel="noopener" class="btn">🎮 View Project</a>
+    </div>
+
+    <div class="card">
+      <img src="expense-tracker.png.png" alt="Expense Tracker Pro">
+      <h3>💰 Expense Tracker Pro v2.0</h3>
+      <p style="color:#94a3b8;line-height:1.65;margin-top:8px">Expense management app with income/expense tracking, analytics, budget planner, reports, savings goals, dark mode, localStorage and CSV export.</p>
+      <a href="https://m-hammas.github.io/Expense-Tracker-Pro-v2.0/" target="_blank" rel="noopener" class="btn">View Project</a>
+    </div>
+
+    <div class="card" style="border-color:rgba(56,189,248,.28)">
+      <div style="font-size:34px;margin-bottom:14px;color:#38bdf8"><i class="fa-solid fa-globe"></i></div>
+      <h3>⚡ Nexora Digital — Live Agency Website</h3>
+      <p style="color:#94a3b8;line-height:1.65;margin-top:8px">
+        A polished digital agency website focused on web development, SEO, digital marketing,
+        social media and AI automation. Built as a professional real-world web presence.
+      </p>
+      <div class="project-meta"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive</span></div>
+      <a href="https://m-hammas.github.io/SEO-website/" target="_blank" rel="noopener" class="btn">🌐 View Live Nexora Digital</a>
+    </div>
   </div>
-
-  <div class="card">
-    <h3>💼 Portfolio Website</h3>
-    <p>Modern animated personal portfolio with smooth scrolling and typing effect.</p>
-  </div>
-
-  <div class="card fade">
-  <h3>🛒 Ultra Commerce — Professional E-Commerce Website</h3>
-
-  <p>
-    A modern, professional e-commerce web application built with React,
-    Vite, Firebase and responsive CSS. Features include product browsing,
-    search, filters, wishlist, shopping cart, quick view, orders,
-    authentication and a mobile-perfect responsive interface.
-  </p>
-
-  <a
-    href="https://m-hammas.github.io/ultra-commerce-ai/"
-    target="_blank"
-    class="btn"
-  >
-    🚀 View Live Project
-  </a>
-
-  <a
-    href="https://github.com/M-hammas/ultra-commerce-ai"
-    target="_blank"
-    class="btn"
-  >
-    💻 View GitHub
-  </a>
-</div>
-
-<div class="card">
-<img src="weather.png.png" alt="Weather Dashboard">
-  
-  <h3>🌦️ Weather Dashboard</h3>
-  <p>A responsive weather application built with HTML, CSS, and JavaScript. It shows real-time weather information for any city.</p>
-  <br>
-  <a href="https://m-hammas.github.io/Weather-Dashboard-Pro/" target="_blank" class="btn">
-    View Project
-  </a>
-</div>
-
-<div class="card">
-  <img src="todo.png.png" alt="To-Do List">
-  <h3>📝 To-Do List</h3>
-  <p>A responsive To-Do List application built with HTML, CSS, and JavaScript. It lets users add, complete, delete, and save tasks using localStorage.</p>
-  <br>
-  <a href="https://m-hammas.github.io/To-Do-List/" target="_blank" class="btn">
-    View Project
-  </a>
-</div>
-
-<div class="card">
-<img src="tictactoe.png.png" alt="Ultimate Tic Tac Toe">
-  
- <h3>🎮 Ultimate Tic Tac Toe</h3>
-
-    <p>
-        A premium Tic Tac Toe game built with HTML, CSS and JavaScript.
-        Features include AI (Easy, Medium & Hard), score tracking,
-        match history, sound effects, local storage and responsive design.
-    </p>
-<a href="https://m-hammas.github.io/Tic-toc-game/" target="_blank" class="btn">
-    🎮 View Project
-</a>
-</div>
-  <div class="card">
-
-  <img src="expense-tracker.png.png" alt="Expense Tracker Pro">
-
-  <h3>💰 Expense Tracker Pro v2.0</h3>
-
-  <p>
-    A modern Expense Tracker built with HTML, CSS and JavaScript.
-    Features include income & expense management, analytics charts,
-    budget planner, reports, savings goal, dark mode, local storage,
-    CSV export and responsive design.
-  </p>
-
-  <br>
-
-  <a href="https://m-hammas.github.io/Expense-Tracker-Pro-v2.0/" target="_blank" class="btn">
-    View Project
-  </a>
-
-</div>
 </section>
-<!-- CONTACT -->
+
+<section id="resume" class="fade">
+  <h2 class="section-title">Professional Resume</h2>
+  <p class="section-sub">My CV is available as a downloadable PDF for recruiters, clients and professional opportunities.</p>
+
+  <div class="card resume-card">
+    <div class="resume-preview">
+      <h3><i class="fa-solid fa-file-lines"></i> Hammas Ali</h3>
+      <p><strong style="color:#fff">Software Engineering Student • Full-Stack Developer</strong></p>
+      <div class="resume-points">
+        <div class="resume-point"><i class="fa-solid fa-check"></i><span>Modern web development and responsive UI implementation</span></div>
+        <div class="resume-point"><i class="fa-solid fa-check"></i><span>JavaScript, React and practical application projects</span></div>
+        <div class="resume-point"><i class="fa-solid fa-check"></i><span>Real portfolio projects including Nexora Digital and Ultra Commerce</span></div>
+        <div class="resume-point"><i class="fa-solid fa-check"></i><span>GitHub-based project development and deployment experience</span></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:28px;margin-bottom:12px">Download My CV</h3>
+      <p style="color:#94a3b8;line-height:1.7;margin-bottom:16px">
+        View or download my professional CV to see my education, technical skills, projects and developer profile.
+      </p>
+      <a href="Muhammad-Hammas-CV.pdf.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> Open CV</a>
+      <a href="Muhammad-Hammas-CV.pdf.pdf" download class="btn secondary"><i class="fa-solid fa-download"></i> Download CV</a>
+    </div>
+  </div>
+</section>
+
+<section class="fade">
+  <h2 class="section-title">Development Journey</h2>
+  <p class="section-sub">A portfolio built around continuous learning and real project practice.</p>
+  <div class="timeline">
+    <div class="timeline-item"><strong>Software Engineering</strong><p>Currently building a strong foundation through a BS Software Engineering degree and practical development work.</p></div>
+    <div class="timeline-item"><strong>Web Development</strong><p>Built responsive websites and interactive JavaScript applications, then expanded into React-based application development.</p></div>
+    <div class="timeline-item"><strong>Full-Stack Direction</strong><p>Expanding from frontend development into backend technologies, APIs, databases and complete application workflows.</p></div>
+    <div class="timeline-item"><strong>Professional Portfolio</strong><p>Developing and deploying real projects such as Nexora Digital, Ultra Commerce, dashboards, games and productivity applications.</p></div>
+  </div>
+</section>
+
 <section id="contact" class="contact fade">
-  <h2>Contact Me</h2>
-
-  <p>Email:</p>
-  <p style="font-size:18px;">
-    <a href="mailto:hammasali127@gmail.com">
-      hammasali127@gmail.com
-    </a>
-  </p>
-
-  <br>
-
-  <a href="https://wa.me/923164968368" class="btn">WhatsApp</a>
-
+  <h2 class="section-title">Let's Work Together</h2>
+  <p class="section-sub">Have a project, freelance opportunity or collaboration idea? Get in touch.</p>
+  <div class="contact-card">
+    <div class="contact-box">
+      <i class="fa-solid fa-envelope"></i>
+      <h3>Email</h3>
+      <p style="margin-top:7px"><a href="mailto:hammasali127@gmail.com">hammasali127@gmail.com</a></p>
+    </div>
+    <div class="contact-box">
+      <i class="fa-brands fa-whatsapp"></i>
+      <h3>WhatsApp</h3>
+      <p style="margin-top:7px"><a href="https://wa.me/923164968368">Chat directly on WhatsApp</a></p>
+    </div>
+  </div>
+  <div style="margin-top:25px;text-align:center">
+    <a href="mailto:hammasali127@gmail.com" class="btn"><i class="fa-solid fa-paper-plane"></i> Email Me</a>
+    <a href="https://wa.me/923164968368" class="btn secondary"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+  </div>
 </section>
+
+<footer>
+  <p>© 2026 Hammas Ali • Software Engineering • Full-Stack Development</p>
+</footer>
+
+<button id="scrollTop" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-
-/* TYPING EFFECT */
-const text = ["Frontend Developer", "Fiverr Seller", "Upwork Ready"];
-let i=0, j=0, current="", isDeleting=false;
-
+/* Professional typing effect */
+const text=["Full-Stack Developer","Software Engineering Student","Web Developer","React Developer","Future Software Engineer"];
+let i=0,j=0,current="",isDeleting=false;
 function type(){
-  current = text[i];
-  document.querySelector(".typing").textContent = current.substring(0,j);
-
-  if(!isDeleting && j < current.length){
-    j++;
-    setTimeout(type,100);
-  } else if(isDeleting && j>0){
-    j--;
-    setTimeout(type,50);
-  } else{
-    isDeleting = !isDeleting;
-    if(!isDeleting){ i = (i+1)%text.length; }
-    setTimeout(type,1000);
-  }
+  current=text[i];
+  const el=document.querySelector(".typing");
+  if(!el)return;
+  el.textContent=current.substring(0,j);
+  if(!isDeleting && j<current.length){j++;setTimeout(type,75)}
+  else if(isDeleting && j>0){j--;setTimeout(type,38)}
+  else{isDeleting=!isDeleting;if(!isDeleting)i=(i+1)%text.length;setTimeout(type,isDeleting?900:450)}
 }
 type();
 
-/* SCROLL ANIMATION */
-const elements = document.querySelectorAll('.fade');
+/* Reveal animations */
+const elements=document.querySelectorAll(".fade");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("show");observer.unobserve(entry.target)}})
+},{threshold:.12});
+elements.forEach(el=>observer.observe(el));
 
-function revealSections(){
-    elements.forEach(el=>{
-        const top = el.getBoundingClientRect().top;
-        if(top < window.innerHeight - 100){
-            el.classList.add('show');
-        }
-    });
-}
+/* Active navigation */
+const sections=document.querySelectorAll("section[id]");
+const navLinks=document.querySelectorAll("nav a");
+const navObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(link=>link.classList.toggle("active",link.getAttribute("href")==="#"+entry.target.id));
+    }
+  })
+},{rootMargin:"-30% 0px -55% 0px"});
+sections.forEach(section=>navObserver.observe(section));
 
-window.addEventListener('scroll', revealSections);
-revealSections();
-  const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav a");
+/* Scroll-to-top */
+const topBtn=document.getElementById("scrollTop");
+window.addEventListener("scroll",()=>{
+  topBtn.classList.toggle("show-top",window.scrollY>500);
+},{passive:true});
+topBtn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
 
-window.addEventListener("scroll", () => {
-    let current = "";
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute("id");
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.style.color = "white";
-        if (link.getAttribute("href") === "#" + current) {
-            link.style.color = "#38bdf8";
-        }
-    });
-});
-
+/* Desktop cursor glow */
+const glow=document.getElementById("cursorGlow");
+window.addEventListener("pointermove",e=>{
+  glow.style.left=e.clientX+"px";
+  glow.style.top=e.clientY+"px";
+},{passive:true});
 </script>
-
 </body>
 </html>
+'''
+
+path = Path("/mnt/data/Hammas-Ali-Premium-Portfolio-Final.html")
+path.write_text(html, encoding="utf-8")
+print(f"Created: {path}")
